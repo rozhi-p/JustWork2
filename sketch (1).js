@@ -15,7 +15,7 @@ let minSpeedToPlay = 0.1; // Minimum speed before pausing
 function preload() 
 {
     // Load the pencil making GIF
-    agitatedGif = loadImage('agitated.gif');
+      pencilGif = loadImage('gifs/agitated.gif');
 }
 
 function setup() 
