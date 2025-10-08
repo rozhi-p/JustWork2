@@ -15,7 +15,7 @@ let minSpeedToPlay = 0.1; // Minimum speed before pausing
 function preload() 
 {
     // Load the pencil making GIF
-      pencilGif = loadImage('gifs/agitated.gif');
+      agitatedGif = loadImage('gifs/agitated.gif');
 }
 
 function setup() 
@@ -50,7 +50,7 @@ function draw()
         // Set the GIF playback speed (pause if speed is very low)
         if (playbackSpeed < minSpeedToPlay) 
         {
-            pencilGif.pause();
+            agitatedGif.pause();
         } 
         else 
         {
@@ -64,7 +64,7 @@ function draw()
         rotate(HALF_PI); // Rotate 90 degrees
         imageMode(CENTER);
         // After rotation, width becomes height and height becomes width
-        image(pencilGif, 0, 0, height, width);
+        image(agitatedGif, 0, 0, height, width);
         pop();
         
         // Display rotation and speed information
