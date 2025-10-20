@@ -118,13 +118,13 @@ function draw()
 
 // This function runs when a new touch begins
 function touchStarted() {
-    showPopup = true;   // Show the second GIF
-    popupGif.play();    // Start the popup GIF
+    showdecisionGif= true;   // Show the second GIF
+    decisionGif.play();    // Start the popup GIF
     return false;
 }
 
 function touchEnded() {
-    showPopup = false;  // Hide the second GIF
-    popupGif.pause();   // Stop it from looping when hidden
+    showdecisionGif = false;  // Hide the second GIF
+    decisionGif.pause();   // Stop it from looping when hidden
     return false;
 }
