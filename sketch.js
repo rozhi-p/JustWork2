@@ -6,7 +6,7 @@
 
 
 let agitatedGif;
-let decisionGif;
+let popupGif;
 let playbackSpeed = 1.0; // Speed multiplier for GIF playback
 let backgroundColor;
 
@@ -15,13 +15,13 @@ let speedMultiplier = 3.0; // How much speed per degree of tilt (1° = 3x speed)
 let maxSpeed = 270.0; // Maximum playback speed
 let minSpeedToPlay = 0.1; // Minimum speed before pausing
 
-let showdecisionGif= false; 
+let showpopupGif= false; 
 
 function preload() 
 {
     // Load the pencil making GIF
       agitatedGif = loadImage('gifs/agitated.gif');
-       decisionGif = loadImage('gifs/decision.gif');
+       popupGif = loadImage('gifs/popup.gif');
 }
 
 function setup() 
@@ -75,7 +75,7 @@ function draw()
         imageMode(CENTER);
         // After rotation, width becomes height and height becomes width
         image(agitatedGif, 0, 0, height, width);
-        decision();
+        pop();
         
         // Display rotation and speed information
         // fill(50);
@@ -102,10 +102,10 @@ function draw()
         // text("Tilt phone to make pencils roll", width/2, height - 50);
         // text("Flat = paused, more tilt = faster", width/2, height - 25);
     }
-    if (showdecisionGif) {
+    if (showpopupGif) {
 
         imageMode(CENTER);
-        image(decisionGif, width / 2, height / 2, decisionGif.width / 2, decisionGif.height / 2);
+        image(popupGif, width / 2, height / 2, popupGif.width / 2, popupGif.height / 2);
     }
     else 
     {
@@ -124,15 +124,15 @@ function draw()
 // This function runs when a new touch begins
 function touchStarted() 
 {
-    showdecisionGif = true;  // Show the second GIF
-    decisionGif.play();   // Start it looping
+    showpopupGif = true;  // Show the second GIF
+    popupGif.play();   // Start it looping
     // Touch positions will be updated in draw() function
     return false;
 }
 
 
 function touchEnded() {
-    showdecisionGif = false;  // Hide the second GIF
-    decisionGif.pause();   // Stop it from looping when hidden
+    showpopupGif = false;  // Hide the second GIF
+    popupGif.pause();   // Stop it from looping when hidden
     return false;
 }
