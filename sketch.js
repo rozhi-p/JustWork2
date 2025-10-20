@@ -3,7 +3,10 @@
 // Tilt phone forward/backward to speed up or slow down the animation
 
 // Global variables
+
+
 let agitatedGif;
+let decisionGif;
 let playbackSpeed = 1.0; // Speed multiplier for GIF playback
 let backgroundColor;
 
@@ -12,10 +15,13 @@ let speedMultiplier = 3.0; // How much speed per degree of tilt (1° = 3x speed)
 let maxSpeed = 270.0; // Maximum playback speed
 let minSpeedToPlay = 0.1; // Minimum speed before pausing
 
+let showdecisionGif = false;
+
 function preload() 
 {
     // Load the pencil making GIF
       agitatedGif = loadImage('gifs/agitated.gif');
+      decisionGif = loadImage('gifs/decision.gif');
 }
 
 function setup() 
@@ -91,6 +97,10 @@ function draw()
         // noStroke();
         // text("Tilt phone to make pencils roll", width/2, height - 50);
         // text("Flat = paused, more tilt = faster", width/2, height - 25);
+     if (showdecisionGif) {
+            imageMode(CENTER);
+            image(decisionGif, width / 2, height / 2, height / 2, width / 2);
+        }
     }
     else 
     {
@@ -107,15 +117,14 @@ function draw()
 // ==============================================
 
 // This function runs when a new touch begins
-function touchStarted() 
-{
-    // Touch positions will be updated in draw() function
+function touchStarted() {
+    showPopup = true;   // Show the second GIF
+    popupGif.play();    // Start the popup GIF
     return false;
 }
 
-// This function runs when a touch ends
-function touchEnded() 
-{
-    // Touch positions will be updated in draw() function
+function touchEnded() {
+    showPopup = false;  // Hide the second GIF
+    popupGif.pause();   // Stop it from looping when hidden
     return false;
 }
