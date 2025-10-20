@@ -15,27 +15,31 @@ let speedMultiplier = 3.0; // How much speed per degree of tilt (1° = 3x speed)
 let maxSpeed = 270.0; // Maximum playback speed
 let minSpeedToPlay = 0.1; // Minimum speed before pausing
 
-let showdecisionGif = false;
+let showdecisionGif= false; 
 
 function preload() 
 {
     // Load the pencil making GIF
       agitatedGif = loadImage('gifs/agitated.gif');
-      decisionGif = loadImage('gifs/decision.gif');
+       decisionGif = loadImage('gifs/decision.gif');
 }
 
 function setup() 
 {
-    createCanvas(windowWidth, windowHeight);
+   createCanvas(windowWidth, windowHeight);
     backgroundColor = color(200, 255, 200);
-    
-    // Lock mobile gestures to prevent browser interference
-    lockGestures();
-    
-    textAlign(CENTER, CENTER);
+
+     textAlign(CENTER, CENTER);
     
     // Request permission for motion sensors on iOS
     enableGyroTap();
+
+    // Add a touch event listener (for more advanced control)
+    document.addEventListener('touchmove', function(event) {
+        let touch = event.touches[0];
+        console.log('Touch X: ' + touch.clientX + ' Touch Y: ' + touch.clientY);
+        event.preventDefault();
+    });
 }
 
 function draw() 
@@ -97,10 +101,11 @@ function draw()
         // noStroke();
         // text("Tilt phone to make pencils roll", width/2, height - 50);
         // text("Flat = paused, more tilt = faster", width/2, height - 25);
-     if (showdecisionGif) {
-            imageMode(CENTER);
-            image(decisionGif, width / 2, height / 2, height / 2, width / 2);
-        }
+    }
+    if (showdecisionGif) {
+
+        imageMode(CENTER);
+        image(decisionGif, width / 2, height / 2, decisionGif.width / 2, decisionGif.height / 2);
     }
     else 
     {
@@ -117,11 +122,14 @@ function draw()
 // ==============================================
 
 // This function runs when a new touch begins
-function touchStarted() {
-    showdecisionGif= true;   // Show the second GIF
-    decisionGif.play();    // Start the popup GIF
+function touchStarted() 
+{
+    showdecisionGif = true;  // Show the second GIF
+    decisionGif.play();   // Start it looping
+    // Touch positions will be updated in draw() function
     return false;
 }
+
 
 function touchEnded() {
     showdecisionGif = false;  // Hide the second GIF
