@@ -75,7 +75,7 @@ function draw()
         imageMode(CENTER);
         // After rotation, width becomes height and height becomes width
         image(agitatedGif, 0, 0, height, width);
-        pop();
+        decision();
         
         // Display rotation and speed information
         // fill(50);
